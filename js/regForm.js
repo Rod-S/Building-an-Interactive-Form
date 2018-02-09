@@ -21,12 +21,13 @@ $('#design').change(function() {
   if ($('#design').val()=='js puns') {
     $('#colors-js-puns').show();
     $('#color').val('');
-    $('#color').children('option[value="cornflowerblue"]').show();
-    $('#color').children('option[value="darkslategrey"]').show();
-    $('#color').children('option[value="gold"]').show();
-    $('#color').children('option[value="tomato"]').hide();
-    $('#color').children('option[value="steelblue"]').hide();
-    $('#color').children('option[value="dimgrey"]').hide();
+    $('#color').children('option[value="cornflowerblue"][value="darkslategrey"][value="gold"]').show();
+    //$('#color').children('option[value="darkslategrey"]').show();
+    //$('#color').children('option[value="gold"]').show();
+    $('#color').children('option[value="tomato"][value="steelblue"][value="dimgrey"]').hide();
+    //$('#color').children('option[value="tomato"]').hide();
+    //$('#color').children('option[value="steelblue"]').hide();
+    //$('#color').children('option[value="dimgrey"]').hide();
   } else if ($('#design').val()=='heart js') {
     $('#colors-js-puns').show();
     $('#color').val('');
@@ -40,3 +41,5 @@ $('#design').change(function() {
     $('#colors-js-puns').hide();
   }
 });
+
+//$('input[type="checkbox"]').each().addClass()
