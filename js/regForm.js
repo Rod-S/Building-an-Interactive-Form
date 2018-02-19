@@ -21,25 +21,40 @@ $('#design').change(function() {
   if ($('#design').val()=='js puns') {
     $('#colors-js-puns').show();
     $('#color').val('');
-    $('#color').children('option[value="cornflowerblue"][value="darkslategrey"][value="gold"]').show();
-    //$('#color').children('option[value="darkslategrey"]').show();
-    //$('#color').children('option[value="gold"]').show();
-    $('#color').children('option[value="tomato"][value="steelblue"][value="dimgrey"]').hide();
-    //$('#color').children('option[value="tomato"]').hide();
-    //$('#color').children('option[value="steelblue"]').hide();
-    //$('#color').children('option[value="dimgrey"]').hide();
+    $('.jsPuns').show();
+    $('.heartJs').hide();
   } else if ($('#design').val()=='heart js') {
     $('#colors-js-puns').show();
     $('#color').val('');
-    $('#color').children('option[value="cornflowerblue"]').hide();
-    $('#color').children('option[value="darkslategrey"]').hide();
-    $('#color').children('option[value="gold"]').hide();
-    $('#color').children('option[value="tomato"]').show();
-    $('#color').children('option[value="steelblue"]').show();
-    $('#color').children('option[value="dimgrey"]').show();
+    $('.jsPuns').hide();
+    $('.heartJs').show();
   } else {
     $('#colors-js-puns').hide();
   }
 });
 
-//$('input[type="checkbox"]').each().addClass()
+
+$('input:checkbox').on('click', function () {
+  let $this = $(this);
+  let isChecked = $(this).is(':checked');
+  if ($this.is('input:checkbox[name="js-frameworks"]')) {
+    if ($('input:checkbox[name="js-frameworks"]:checked')) {
+      $('input:checkbox[name="express"]').prop('disabled', isChecked ? true : false);
+    }
+  }
+  if ($this.is('input:checkbox[name="express"]')) {
+    if ($('input:checkbox[name="express"]:checked')) {
+      $('input:checkbox[name="js-frameworks"]').prop('disabled', isChecked ? true : false);
+    }
+  }
+  if ($this.is('input:checkbox[name="js-libs"]')) {
+    if ($('input:checkbox[name="js-libs"]:checked')) {
+      $('input:checkbox[name="node"]').prop('disabled', isChecked ? true : false);
+    }
+  }
+  if ($this.is('input:checkbox[name="node"]')) {
+    if ($('input:checkbox[name="node"]:checked')) {
+      $('input:checkbox[name="js-libs"]').prop('disabled', isChecked ? true : false);
+    }
+  }
+});
