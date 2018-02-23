@@ -88,16 +88,70 @@ $('#payment option[value="credit card"]').prop('selected', true);
 $paypal.hide();
 $bitcoin.hide();
 
-$('#payment').change(function() {
-  $('#payment option:selected').each(function () {
-    if ($('#payment option[value="paypal"]:selected')) {
+
+  $('#payment').change(function() {
+    const val = $(this).val();
+    if (val === 'paypal') {
         $bitcoin.hide();
         $creditCard.hide();
         $paypal.show();
-    } else if ($('#payment option[value="credit card"]:selected')) {
+    } else if (val === 'bitcoin') {
+        $bitcoin.show();
+        $creditCard.hide();
         $paypal.hide();
+    } else if (val === 'credit card') {
         $bitcoin.hide();
         $creditCard.show();
+        $paypal.hide();
+    } else {
+        $bitcoin.hide();
+        $creditCard.hide();
+        $paypal.hide();
     }
-  })
-})
+  });
+
+//FORM VALIDATION
+
+$('form').submit(function (event) {
+  const validName = () => {
+    if ($('#name').val() === '') {
+      event.preventDefault();
+      $('.name-error').remove();
+      $('#name').addClass('error');
+      $('#name').before('<p class=name-error>Please enter a name.</p>');
+      $('p').addClass('error-text');
+      $('html,body').scrollTop(0);
+    } else {
+      $('p').remove('.name-error');
+      $('#name').removeClass('error');
+    }
+  };
+  validName();
+
+  const validEmail = (inputText) => {
+    const email_regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!inputText.match(email_regex)) {
+      event.preventDefault();
+      $('.email-error').remove();
+      $('#mail').addClass('error');
+      $('#mail').before('<p class=email-error>Please enter a valid email.</p>');
+      $('p').addClass('error-text');
+      $('html,body').scrollTop(0);
+    } else {
+      $('p').remove('.email-error');
+      $('#mail').removeClass('error');
+    }
+  };
+  validEmail($('#mail').val());
+
+  const activityChecked = () => {
+    if ($('input:checked').length<1){
+      event.preventDefault();
+      $('.activities legend').before('<p class=activity-error>Please check at least one activity.</p>');
+      $('.activity-error').addClass('error-text');
+    } else {
+      $('p').remove('.activity-error');
+    }
+  }
+activityChecked();
+});
