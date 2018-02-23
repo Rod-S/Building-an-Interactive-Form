@@ -191,3 +191,7 @@ button:hover {
 .error-text {
   color: red;
 }
+
+.activity-error {
+  margin-top: 10px;
+}

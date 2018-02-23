@@ -134,7 +134,7 @@ $('form').submit(function (event) {
       event.preventDefault();
       $('.email-error').remove();
       $('#mail').addClass('error');
-      $('#mail').before('<p class=email-error>Please enter a valid email.</p>');
+      $('#mail').before('<p class=email-error>Please enter a valid email address.</p>');
       $('p').addClass('error-text');
       $('html,body').scrollTop(0);
     } else {
@@ -144,14 +144,55 @@ $('form').submit(function (event) {
   };
   validEmail($('#mail').val());
 
-  const activityChecked = () => {
-    if ($('input:checked').length<1){
+  const activityChecked = (checked) => {
+    if (checked) {
       event.preventDefault();
+      $('.activity-error').remove();
       $('.activities legend').before('<p class=activity-error>Please check at least one activity.</p>');
+      $('.activities legend').css('margin-bottom', '1px');
       $('.activity-error').addClass('error-text');
     } else {
+      $('.activities legend').css('margin-bottom', '22.5px');
       $('p').remove('.activity-error');
     }
   }
-activityChecked();
+  activityChecked($('input:checked').length<1);
+
+  const creditCheck = () => {
+    const cardNumber = $('#cc-num').val();
+    const cc_num_regex = /^\d+$/
+    const cardNumberValid = (cc) => {
+      if (cc == '') {
+        $('.cc-blank-error').remove();
+        $('.cc-number-error').remove();
+        $('.cc-letter-error').remove();
+        $('.credit-card').before('<p class=cc-blank-error>Please enter a card number.</p>')
+        $('.cc-blank-error').addClass('error-text');
+        $('#cc-num').addClass('error');
+      } else if (cardNumber.match(/^\d+$/)) {
+        if ( cc.length < 13 || cc.length > 16 ) {
+          $('.cc-blank-error').remove();
+          $('.cc-number-error').remove();
+          $('.cc-letter-error').remove();
+          $('.credit-card').before('<p class=cc-number-error>Card Number must be between 13 and 16 numbers.</p>')
+          $('.cc-number-error').addClass('error-text');
+          $('#cc-num').addClass('error');
+        }
+      } else if (!cardNumber.match(/^\d+$/)) {
+        $('.cc-blank-error').remove();
+        $('.cc-number-error').remove();
+        $('.cc-letter-error').remove();
+        $('.credit-card').before('<p class=cc-letter-error>Card Number cannot include letters or symbols.')
+        $('.cc-letter-error').addClass('error-text');
+        $('#cc-num').addClass('error');
+      } else {
+        $('.cc-blank-error').remove();
+        $('.cc-number-error').remove();
+        $('.cc-letter-error').remove();
+        $('#cc-num').removeClass('error');
+      }
+    }
+    cardNumberValid($('#cc-num').val());
+  }
+  creditCheck();
 });
