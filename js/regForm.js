@@ -160,39 +160,106 @@ $('form').submit(function (event) {
 
   const creditCheck = () => {
     const cardNumber = $('#cc-num').val();
-    const cc_num_regex = /^\d+$/
     const cardNumberValid = (cc) => {
       if (cc == '') {
         $('.cc-blank-error').remove();
+        $('.cc-length-error').remove();
         $('.cc-number-error').remove();
-        $('.cc-letter-error').remove();
-        $('.credit-card').before('<p class=cc-blank-error>Please enter a card number.</p>')
+        $('.credit-card').before('<p class=cc-blank-error>Please enter a Card Number.</p>')
         $('.cc-blank-error').addClass('error-text');
         $('#cc-num').addClass('error');
       } else if (cardNumber.match(/^\d+$/)) {
         if ( cc.length < 13 || cc.length > 16 ) {
           $('.cc-blank-error').remove();
+          $('.cc-length-error').remove();
           $('.cc-number-error').remove();
-          $('.cc-letter-error').remove();
-          $('.credit-card').before('<p class=cc-number-error>Card Number must be between 13 and 16 numbers.</p>')
-          $('.cc-number-error').addClass('error-text');
+          $('.credit-card').before('<p class=cc-length-error>Card Number must be between 13 and 16 digits long.</p>')
+          $('.cc-length-error').addClass('error-text');
           $('#cc-num').addClass('error');
+        } else if (cc.length >= 13 && cc.length <= 16) {
+          $('.cc-blank-error').remove();
+          $('.cc-length-error').remove();
+          $('.cc-number-error').remove();
+          $('#cc-num').removeClass('error');
         }
       } else if (!cardNumber.match(/^\d+$/)) {
         $('.cc-blank-error').remove();
+        $('.cc-length-error').remove();
         $('.cc-number-error').remove();
-        $('.cc-letter-error').remove();
-        $('.credit-card').before('<p class=cc-letter-error>Card Number cannot include letters or symbols.')
-        $('.cc-letter-error').addClass('error-text');
+        $('.credit-card').before('<p class=cc-number-error>Card Number cannot include letters or symbols.')
+        $('.cc-number-error').addClass('error-text');
         $('#cc-num').addClass('error');
-      } else {
-        $('.cc-blank-error').remove();
-        $('.cc-number-error').remove();
-        $('.cc-letter-error').remove();
-        $('#cc-num').removeClass('error');
       }
     }
     cardNumberValid($('#cc-num').val());
+
+    const cardZipValid = () => {
+      const zipCode = $('#zip').val();
+      if (zipCode == '') {
+        $('.zip-blank-error').remove();
+        $('.zip-length-error').remove();
+        $('.zip-number-error').remove();
+        $('.credit-card').before('<p class=zip-blank-error>Please enter a Zip Code.</p>');
+        $('.zip-blank-error').addClass('error-text');
+        $('#zip').addClass('error');
+      } else if (zipCode.match(/^\d+$/)) {
+        if (zipCode.length != 5) {
+          $('.zip-blank-error').remove();
+          $('.zip-length-error').remove();
+          $('.zip-number-error').remove();
+          $('.credit-card').before('<p class=zip-length-error>Zip Code must be 5 digits long.</p>');
+          $('.zip-length-error').addClass('error-text');
+          $('#zip').addClass('error')
+        } else if (zipCode.length == 5) {
+          $('.zip-blank-error').remove();
+          $('.zip-length-error').remove();
+          $('.zip-number-error').remove();
+          $('#zip').removeClass('error');
+        }
+      } else if (!zipCode.match(/^\d+$/)){
+        $('.zip-blank-error').remove();
+        $('.zip-length-error').remove();
+        $('.zip-number-error').remove();
+        $('.credit-card').before('<p class=zip-number-error>Zip Code cannot include letters or symbols.')
+        $('.zip-number-error').addClass('error-text');
+        $('#zip').addClass('error');
+      }
+    }
+    cardZipValid();
+
+    const cardCVV = () => {
+      const CVV = $('#cvv').val();
+      if (CVV == '') {
+        $('.cvv-blank-error').remove();
+        $('.cvv-length-error').remove();
+        $('.cvv-number-error').remove();
+        $('.credit-card').before('<p class=cvv-blank-error>Please enter a CVV.</p>');
+        $('.cvv-blank-error').addClass('error-text');
+        $('#cvv').addClass('error');
+      } else if (CVV.match(/^\d+$/)) {
+        if (CVV.length != 3) {
+          $('.cvv-blank-error').remove();
+          $('.cvv-length-error').remove();
+          $('.cvv-number-error').remove();
+          $('.credit-card').before('<p class=cvv-length-error>CVV must be 3 digits long.</p>');
+          $('.cvv-length-error').addClass('error-text');
+          $('#cvv').addClass('error');
+        } else if (CVV.length == 3) {
+          $('.cvv-blank-error').remove();
+          $('.cvv-length-error').remove();
+          $('.cvv-number-error').remove();
+          $('#cvv').removeClass('error');
+        }
+      } else if (!CVV.match(/^\d+$/)){
+        $('.cvv-blank-error').remove();
+        $('.cvv-length-error').remove();
+        $('.cvv-number-error').remove();
+        $('.credit-card').before('<p class=cvv-number-error>CVV cannot include letters or symbols.')
+        $('.cvv-number-error').addClass('error-text');
+        $('#cvv').addClass('error');
+      }
+    }
+  cardCVV();
   }
   creditCheck();
 });
