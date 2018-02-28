@@ -113,6 +113,11 @@ button:hover {
 	background: #184c62;
 }
 
+#activityTotal {
+  font-weight: bold;
+  color: tomato;
+}
+
 /* =================================
   Page Styles
 ==================================== */
@@ -188,10 +193,18 @@ button:hover {
   border: solid 2px red;
 }
 
+.normal-text {
+  color: #184f68;
+}
+
 .error-text {
   color: red;
 }
 
 .activity-error {
   margin-top: 10px;
+}
+
+.email-valid {
+  color: darkgreen;
 }
