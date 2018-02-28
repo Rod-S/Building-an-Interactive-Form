@@ -59,28 +59,24 @@ $('input:checkbox').on('click', function () {
   let isChecked = $this.is(':checked');
 
   if ($this.is('input:checkbox[name="js-frameworks"]')) {
-    //if 'js-frameworks' is checked
     if ($('input:checkbox[name="js-frameworks"]:checked')) {
       //if 'js-frameworks' is checked, disable 'express' checkbox. Otherwise, do not disable
       $('input:checkbox[name="express"]').prop('disabled', isChecked ? true : false);
     }
   }
   else if ($this.is('input:checkbox[name="express"]')) {
-    //if 'express' is checked
     if ($('input:checkbox[name="express"]:checked')) {
       //if 'express' is checked, disable 'js-frameworks' checkbox. Otherwise, do not disable
       $('input:checkbox[name="js-frameworks"]').prop('disabled', isChecked ? true : false);
     }
   }
   else if ($this.is('input:checkbox[name="js-libs"]')) {
-    //if 'js-libs' is checked
     if ($('input:checkbox[name="js-libs"]:checked')) {
       //if 'js-libs' is checked, disable 'node' checkbox. Otherwise, do not disable
       $('input:checkbox[name="node"]').prop('disabled', isChecked ? true : false);
     }
   }
   else if ($this.is('input:checkbox[name="node"]')) {
-    //if 'node' is checked
     if ($('input:checkbox[name="node"]:checked')) {
       //if 'node' is checked, disable 'js-libs' checkbox. Otherwise, do not disable
       $('input:checkbox[name="js-libs"]').prop('disabled', isChecked ? true : false);
