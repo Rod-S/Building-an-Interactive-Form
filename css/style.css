@@ -118,6 +118,10 @@ button:hover {
   color: tomato;
 }
 
+.disabled-label {
+  text-decoration: line-through;
+}
+
 /* =================================
   Page Styles
 ==================================== */

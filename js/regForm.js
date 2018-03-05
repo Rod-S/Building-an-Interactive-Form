@@ -62,25 +62,29 @@ $('input:checkbox').on('click', function () {
   if ($this.is('input:checkbox[name="js-frameworks"]')) {
     if ($('input:checkbox[name="js-frameworks"]:checked')) {
       //if 'js-frameworks' is checked, disable 'express' checkbox. Otherwise, do not disable
-      $('input:checkbox[name="express"]').prop('disabled', isChecked ? true : false);
+      //addt'l ternary operator added for parent label element to add or remove css class "disabled-label" based on :checked
+      $('input:checkbox[name="express"]').prop('disabled', isChecked ? true : false).parent()[isChecked ? 'addClass' : 'removeClass']('disabled-label');
     }
   }
   else if ($this.is('input:checkbox[name="express"]')) {
     if ($('input:checkbox[name="express"]:checked')) {
       //if 'express' is checked, disable 'js-frameworks' checkbox. Otherwise, do not disable
-      $('input:checkbox[name="js-frameworks"]').prop('disabled', isChecked ? true : false);
+      //addt'l ternary operator added for parent label element to add or remove css class "disabled-label" based on :checked
+      $('input:checkbox[name="js-frameworks"]').prop('disabled', isChecked ? true : false).parent()[isChecked ? 'addClass' : 'removeClass']('disabled-label');
     }
   }
   else if ($this.is('input:checkbox[name="js-libs"]')) {
     if ($('input:checkbox[name="js-libs"]:checked')) {
       //if 'js-libs' is checked, disable 'node' checkbox. Otherwise, do not disable
-      $('input:checkbox[name="node"]').prop('disabled', isChecked ? true : false);
+      //addt'l ternary operator added for parent label element to add or remove css class "disabled-label" based on :checked
+      $('input:checkbox[name="node"]').prop('disabled', isChecked ? true : false).parent()[isChecked ? 'addClass' : 'removeClass']('disabled-label');;
     }
   }
   else if ($this.is('input:checkbox[name="node"]')) {
     if ($('input:checkbox[name="node"]:checked')) {
       //if 'node' is checked, disable 'js-libs' checkbox. Otherwise, do not disable
-      $('input:checkbox[name="js-libs"]').prop('disabled', isChecked ? true : false);
+      //addt'l ternary operator added for parent label element to add or remove css class "disabled-label" based on :checked
+      $('input:checkbox[name="js-libs"]').prop('disabled', isChecked ? true : false).parent()[isChecked ? 'addClass' : 'removeClass']('disabled-label');;
     }
   }
 });
