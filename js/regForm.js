@@ -173,7 +173,7 @@ const email_regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 $('form').submit(function (event) {
   const validName = () => {
     //if name input text field is blank
-    if ($('#name').val() === '') {
+    if ($.trim($('#name').val()) === '') {
       //prevent form submission and add error classes/msg
       event.preventDefault();
       $('.name-error').remove();
@@ -235,7 +235,7 @@ $('form').submit(function (event) {
     const cardNumber = $('#cc-num').val();
     const cardNumberValid = (cc) => {
       //if credit card number field is blank, prevent form submission and add error classes/msg
-      if (cc == '') {
+      if ($.trim(cc) === '') {
         event.preventDefault();
         $('.cc-blank-error, .cc-length-error, .cc-number-error').remove();
         $('.credit-card').before('<p class=cc-blank-error>Please enter a Credit Card Number.</p>')
@@ -271,7 +271,7 @@ $('form').submit(function (event) {
     const cardZipValid = () => {
       const zipCode = $('#zip').val();
       //if zip code field is blank
-      if (zipCode == '') {
+      if ($.trim(zipCode) === '') {
         //prevent form submission and add error classes/msg
         event.preventDefault();
         $('.zip-blank-error, .zip-length-error, .zip-number-error').remove();
@@ -311,7 +311,7 @@ $('form').submit(function (event) {
     const cardCVV = () => {
       const CVV = $('#cvv').val();
       //if cvv field is blank
-      if (CVV == '') {
+      if ($.trim(CVV) === '') {
         //prevent form submission and add error classes
         event.preventDefault();
         $('.cvv-blank-error, .cvv-length-error, .cvv-number-error').remove();
