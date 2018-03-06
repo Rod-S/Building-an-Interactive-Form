@@ -173,6 +173,7 @@ const email_regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 $('form').submit(function (event) {
   const validName = () => {
     //if name input text field is blank
+    //jquery $.trim() used to remove whitespace to in case of incorrect validation error
     if ($.trim($('#name').val()) === '') {
       //prevent form submission and add error classes/msg
       event.preventDefault();
