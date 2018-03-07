@@ -115,7 +115,7 @@ button:hover {
 
 #activityTotal {
   font-weight: bold;
-  color: tomato;
+  color: green;
 }
 
 .disabled-label {
@@ -211,4 +211,8 @@ button:hover {
 
 .email-valid {
   color: darkgreen;
+}
+
+.email-error {
+  color: red;
 }
