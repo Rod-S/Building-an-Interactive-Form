@@ -381,6 +381,5 @@ function validateEmail(inputText) {
       $('p').remove('.email-error');
       $('#mail').removeClass('error');
       $('.email-valid').remove();
-      $('#mail').before('<p class=email-valid>Valid Email!</p>');
     }
 }
