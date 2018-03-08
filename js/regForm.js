@@ -129,7 +129,7 @@ $('#payment').change(function() {
   //if option selected is 'paypal'
   if (val === 'paypal') {
       //remove classes which can potentially duplicate error messages
-      $('.cc-blank-error, .cc-length-error, .cc-number-error, .zip-blank-error, .zip-length-error, .zip-number-error, .cvv-blank-error, .cvv-length-error, .cvv-number-error').hide();
+      $('.cc-blank-error, .cc-length-error, .cc-number-error, .zip-blank-error, .zip-length-error, .zip-number-error, .cvv-blank-error, .cvv-length-error, .cvv-number-error, .payment-blank-error').hide();
       //set original paypal font color which can potentially be overwritten
       $('.payPalMsg').css('color', '#184f68');
       //hide bitcoin and credit card information
@@ -138,7 +138,7 @@ $('#payment').change(function() {
       $creditCard.hide();
       $paypal.show();
   } else if (val === 'bitcoin') {
-      $('.cc-blank-error, .cc-length-error, .cc-number-error, .zip-blank-error, .zip-length-error, .zip-number-error, .cvv-blank-error, .cvv-length-error, .cvv-number-error').hide();
+      $('.cc-blank-error, .cc-length-error, .cc-number-error, .zip-blank-error, .zip-length-error, .zip-number-error, .cvv-blank-error, .cvv-length-error, .cvv-number-error, .payment-blank-error').hide();
       //set original bitcoin font color which can potentially be overwritten
       $('.bitMsg').css('color','#184f68');
       $bitcoin.show();
@@ -146,12 +146,14 @@ $('#payment').change(function() {
       $paypal.hide();
   } else if (val === 'credit card') {
       $('.cc-blank-error, .cc-length-error, .cc-number-error, .zip-blank-error, .zip-length-error, .zip-number-error, .cvv-blank-error, .cvv-length-error, .cvv-number-error').show();
+      $('.payment-blank-error').hide();
       $bitcoin.hide();
       $creditCard.show();
       $paypal.hide();
     //if no payment option is selected
   } else {
       //hide bitcoin, credit card and paypal information
+      $('.cc-blank-error, .cc-length-error, .cc-number-error, .zip-blank-error, .zip-length-error, .zip-number-error, .cvv-blank-error, .cvv-length-error, .cvv-number-error, .payment-blank-error').hide();
       $bitcoin.hide();
       $creditCard.hide();
       $paypal.hide();
@@ -231,6 +233,12 @@ $('form').submit(function (event) {
 
   //payment section validation
   const creditCheck = () => {
+    if ($('#payment').val() === 'select_method') {
+      event.preventDefault();
+      $('.payment-blank-error').remove();
+      $("#payment").before('<p class=payment-blank-error>Please select a payment option.</p>');
+      $('.payment-blank-error').addClass('error-text');
+    }
     //Break out of creditCheck() validation if credit card option is not selected
     if ($('#payment').val() != 'credit card') {return};
     const cardNumber = $('#cc-num').val();
